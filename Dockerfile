@@ -1,32 +1,32 @@
-# Use Node.js LTS version as the base image
-FROM node:lts-alpine as build
+# Use the official Node.js 13.12.0-alpine image as the base image for the builder stage
+FROM node:13.12.0-alpine as builder
 
-# Set the working directory inside the container
+# Set the working directory to /app
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
-COPY package.json package-lock.json ./
+# Set the PATH environment variable to include the node_modules/.bin directory
+ENV PATH /app/node_modules/.bin:$PATH
 
-# Install dependencies
-RUN npm ci
+# Copy only the package.json and package-lock.json files to the container
+COPY package*.json ./
 
-# Copy the entire project to the working directory
-COPY . .
+# Install the dependencies and cache them
+RUN npm install --silent
 
-# Build the React app
+# Copy the rest of the application files to the container
+COPY . ./
+
+# Build the app
 RUN npm run build
 
-# Use Node.js as the base image for the runtime
-FROM node:lts-alpine
+# Use the official nginx:alpine image as the base image for the final stage
+FROM nginx:alpine
 
-# Set the working directory
-WORKDIR /app
+# Copy the build files from the builder stage to the nginx web server directory
+COPY --from=builder /app/build /usr/share/nginx/html
 
-# Copy the built React app from the previous stage
-COPY --from=build /app/build .
+# Expose the default nginx port
+EXPOSE 80
 
-# Expose the port your React app is running on
-EXPOSE 3006
-
-# Start the React app
-CMD ["npm", "start"]
+# Start the nginx web server
+CMD ["nginx", "-g", "daemon off;"]
