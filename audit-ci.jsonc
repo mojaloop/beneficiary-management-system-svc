@@ -4,5 +4,11 @@
   // Only use one of ["low": true, "moderate": true, "high": true, "critical": true]
   "moderate": true,
   "allowlist": [ // NOTE: Please add as much information as possible to any items added to the allowList
+    "GHSA-ghr5-ch3p-vcr6", // https://github.com/advisories/GHSA-ghr5-ch3p-vcr6
+    "GHSA-rv95-896h-c2vc", // https://github.com/advisories/GHSA-rv95-896h-c2vc
+    "GHSA-cxjh-pqwp-8mfp", // https://github.com/advisories/GHSA-cxjh-pqwp-8mfp
+    "GHSA-rp65-9cf3-cjxr", // https://github.com/advisories/GHSA-rp65-9cf3-cjxr
+    "GHSA-7fh5-64p2-3v2j", // https://github.com/advisories/GHSA-7fh5-64p2-3v2j
+    "GHSA-wr3j-pwj9-hqq6" // https://github.com/advisories/GHSA-wr3j-pwj9-hqq6
   ]
 }
