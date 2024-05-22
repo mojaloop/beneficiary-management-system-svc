@@ -28,7 +28,8 @@
   "scripts": {
     "start": "set PORT=3006 && react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test:react": "react-scripts test",
+    "test": "echo \"Error: no unit-tests found\"",
     "eject": "react-scripts eject",
     "lint": "echo \"Error: no linting found\"",
     "dep:check": "npx --no-install ncu -e 2",
