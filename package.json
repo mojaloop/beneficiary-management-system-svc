@@ -21,11 +21,22 @@
     "util": "^0.12.5",
     "web-vitals": "^2.1.4"
   },
+  "devDependencies": {
+    "audit-ci": "^6.6.1",
+    "npm-check-updates": "^16.14.20"
+  },
   "scripts": {
     "start": "set PORT=3006 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "echo \"Error: no linting found\"",
+    "dep:check": "npx --no-install ncu -e 2",
+    "dep:update": "npx --no-install ncu -u",
+    "audit:fix": "npm audit fix",
+    "audit:check": "npx audit-ci --config ./audit-ci.jsonc",
+    "release": "npx standard-version --no-verify --releaseCommitMessageFormat 'ci(release): {{currentTag}} [skip ci]'",
+    "snapshot": "npx standard-version --no-verify --skip.changelog --prerelease snapshot --releaseCommitMessageFormat 'ci(snapshot): {{currentTag}}'"
   },
   "eslintConfig": {
     "extends": [
