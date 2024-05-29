@@ -2,22 +2,11 @@ import React, { useState } from 'react';
 import Sidebar from './SideBar';
 import Header from './Header';
 import { Link } from 'react-router-dom';
+import config from './config.json';
 
 const NewBeneficiariesPage: React.FC = () => {
   // Simulated data from API
-  const [beneficiaries, setBeneficiaries] = useState([
-    { id: 'UG680720000289000000001', name: 'John Doe', token: '', status: 'Not Registered' },
-    { id: 'CM2903E3E0WE', name: 'Alice Smith', token: '', status: 'Not Registered' },
-    { id: '4589712365XY', name: 'Michael Johnson', token: '', status: 'Not Registered' },
-{ id: 'QR7890PO123L', name: 'Emily Davis', token: '', status: 'Not Registered' },
-{ id: 'ZX5678901234', name: 'Robert Wilson', token: '', status: 'Not Registered' },
-{ id: 'AS3456789012', name: 'Sophia Martinez', token: '', status: 'Not Registered' },
-{ id: 'OP9876543210', name: 'William Thompson', token: '', status: 'Not Registered' },
-{ id: 'LK2345678901', name: 'Olivia Anderson', token: '', status: 'Not Registered' },
-{ id: 'JH6789012345', name: 'James Taylor', token: '', status: 'Not Registered' },
-{ id: 'EF0987654321', name: 'Emma Thomas', token: '', status: 'Not Registered' }
-    // Add more beneficiaries as needed
-  ]);
+  const [beneficiaries, setBeneficiaries] = useState(config.beneficiaries);
 
   const handleRegisterToken = (index: number) => {
     // Simulated API call to register token
@@ -65,8 +54,9 @@ const NewBeneficiariesPage: React.FC = () => {
                         Change Payment Token
                       </button>
                     ) : (
-                          <button onClick={() => window.location.href = 'http://localhost:3007/auth?payeeId='+ beneficiary.id} className="w3-button w3-red">Register Token</button>                
-
+                      <button onClick={() => window.location.href = config.registerTokenUrl + beneficiary.id} className="w3-button w3-red">
+                            Register Token
+                          </button>
 
                     )}
                   </td>
