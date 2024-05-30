@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Sidebar from './SideBar';
 import Header from './Header';
-import { Link } from 'react-router-dom';
+import { BRP_UI_URL } from './constants';
 
 const NewBeneficiariesPage: React.FC = () => {
   // Simulated data from API
@@ -65,9 +65,9 @@ const NewBeneficiariesPage: React.FC = () => {
                         Change Payment Token
                       </button>
                     ) : (
-                          <button onClick={() => window.location.href = 'http://localhost:3007/auth?payeeId='+ beneficiary.id} className="w3-button w3-red">Register Token</button>                
-
-
+                       <button onClick={() => window.location.href = `${BRP_UI_URL}/auth?payeeId=${beneficiary.id}`} className="w3-button w3-red">
+                         Register Token
+                       </button>
                     )}
                   </td>
                 </tr>
